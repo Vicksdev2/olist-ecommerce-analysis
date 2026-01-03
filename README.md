@@ -12,7 +12,7 @@ business performance by quantifying patterns in sales seasonality, logistics eff
 
 
 <br>
-<h2>🪪 About the Project</h2>
+<h2>🪪 About the Project </h2>
 
   Olist is a leading Brazilian e-commerce platform that connects small businesses with the country's main marketplaces. Operating as a 
   SaaS technology company, it facilitates the sale of products from thousands of sellers to millions of customers.
