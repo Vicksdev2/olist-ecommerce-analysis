@@ -43,7 +43,7 @@ How can we optimize the customer experience to maximize retention and lifetime v
 The problem is not loyal customers, it is that the furniture products have quality/shipping issues.
 
 <br>
-<h2> Locations </h2>
+<h2>🚩 Locations </h2>
 
 ***Who are our best customers and where are they located?***
 
@@ -51,7 +51,84 @@ The problem is not loyal customers, it is that the furniture products have quali
 - Spending per customer: approximately $20 to $60.
 
 
+Customer states
+<p align="center">
+  <img src="public/states_customers.png" alt="Customer State" width="800">
+</p>
+
+Amount spending  per customer
+<p align="center">
+  <img src="public/spendig_per_customer.png" alt="spending per customer" width="800">
+</p>
+
+<br>
+<h2> 🚐 Deliveries </h2>
+
+***Do deliveries meet the estimated dates?***
+
+***In which regions is logistics failing?***
+
+- On average, Olist delivers packages ahead of the estimated date.
+
+- Northeastern states (**AL, MA, and SE**) experience the highest delay rates (>15%).
+<p align="center">
+  <img src="public/delays.png" alt="delivery" width="800">
+</p>
+<br>
+
+
+
+<h2> 🪠🧻🫧 Most recurring products </h2>
+
+**The products most purchased by repetitive customers are:**
+ 
+ - cama_mesa_banho -------           3362
+- moveis_decoracao  --------        3344
+- informatica_acessorios ---    1997
+- utilidades_domesticas ----     1851
+- esporte_lazer --------------              1762
+
+<br>
+
+**The products most purchased by new customers are:**
+- beleza_saude -------------                     7925
+- cama_mesa_banho--------           7745
+- esporte_lazer--------------                      6727
+- informatica_acessorios----    5711
+- relogios_presentes--------           5185
+
+<br>
+<h2> 📈 Sales Forecast </h2>
+A linear regression analysis confirms a steady **monthly upward trend** in revenue. The business is scaling, with significant seasonal peaks during **Black Friday (November)**.
+<p align="center">
+  <img src="public/evolutions_sales.png" alt="Prediction" width="800">
+</p>
+<br>
+Sales show marked seasonality with peaks on Black Friday (November) and natural post-Christmas declines, but the overall trend line is positive and robust.
+<br>
 
 <p align="center">
-  <img src="public/states_customers.png" alt="Análisis de clientes por estado" width="800">
+  <img src="public/sales_projection.png" alt="Prediction" width="800">
 </p>
+
+<h2> 📈 Life Cycle and Sales </h2>
+Well, the result is interesting. Half of repeat customers make another purchase within a month. But we also see that there are customers who place several orders on the same day.
+
+Data: 78.78 days. The “mean” is far from the median (29). The average is “skewed” by those customers who took 600 days (the maximum).
+
+<p align="center">
+  <img src="public/days_purchase.png" alt="Prediction" width="800">
+</p>
+<br>
+
+
+<h2>⚙️ Technologies used: </h2>
+ `Python`, `Pandas`, `Seaborn`, `Matplotlib`
+<br>
+
+ <h2>⌨️ Data: </h2>
+ [Olist Brazilian E-Commerce Public Dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce)
+ 
+<br>
+
+**Developed by:** Barbara V. Cedeño A.
