@@ -13,8 +13,8 @@ business performance by quantifying patterns in sales seasonality, logistics eff
 <h2>📑 Index </h2>
 
 1. [🪪 About the Project](#-about-the-project)
-2. [🛠️ Technical Stack and Methodology](#️-technical-stack-and-methodology)
-3. [⛓️‍💥 Main question](#️-main-question)
+2. [🛠️ Technical Stack and Methodology](#️-Technical-Stack-and-Methodology)
+3. [⛓️‍💥 Main question](#️-Main-question)
 4. [🔍 Key Findings](#-key-findings)
 5. [🚩 Locations](#-locations)
 6. [🚐 Deliveries](#-deliveries)
