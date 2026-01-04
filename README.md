@@ -10,6 +10,21 @@ business performance by quantifying patterns in sales seasonality, logistics eff
   <img width="1400" height="294" alt="1_1k72mg1_CZvLptX77zzKTg" src="https://github.com/user-attachments/assets/72f40c72-cd16-4a3c-93b9-2cb16267099d" />
 </p>
 
+<h2>📑 Index </h2>
+
+1. [🪪 About the Project](#-about-the-project)
+2. [🛠️ Technical Stack and Methodology](#️-technical-stack-and-methodology)
+3. [⛓️‍💥 Main question](#️-main-question)
+4. [🔍 Key Findings](#-key-findings)
+5. [🚩 Locations](#-locations)
+6. [🚐 Deliveries](#-deliveries)
+7. [🪠🧻🫧 Most recurring products](#-most-recurring-products)
+8. [📈 Sales Forecast](#-sales-forecast)
+9. [📈 Life Cycle and Sales](#-life-cycle-and-sales)
+10. [⚙️ Technologies used](#️-technologies-used)
+11. [⌨️ Data](#️-data)
+
+
 <br>
 <h2>🪪 About the Project </h2>
 
