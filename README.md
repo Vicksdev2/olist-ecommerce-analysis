@@ -15,14 +15,14 @@ business performance by quantifying patterns in sales seasonality, logistics eff
 1. [🪪 About the Project](#-about-the-project)
 2. [🛠️ Technical Stack and Methodology](#️-Technical-Stack-and-Methodology)
 3. [⛓️‍💥 Main question](#️-Main-question)
-4. [🔍 Key Findings](#-key-findings)
-5. [🚩 Locations](#-locations)
-6. [🚐 Deliveries](#-deliveries)
-7. [🪠🧻🫧 Most recurring products](#-most-recurring-products)
-8. [📈 Sales Forecast](#-sales-forecast)
-9. [📈 Life Cycle and Sales](#-life-cycle-and-sales)
-10. [⚙️ Technologies used](#️-technologies-used)
-11. [⌨️ Data](#️-data)
+4. [🔍 Key Findings](#-Key-Findings)
+5. [🚩 Locations](#-Locations)
+6. [🚐 Deliveries](#-Deliveries)
+7. [🪠🧻🫧 Most recurring products](#-Most-recurring-products)
+8. [📈 Sales Forecast](#-Sales-Forecast)
+9. [📈 Life Cycle and Sales](#-Life-Cycle-and-Sales)
+10. [⚙️ Technologies used](#️-Technologies-used)
+11. [⌨️ Data](#️-Data)
 
 
 <br>
