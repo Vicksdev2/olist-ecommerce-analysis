@@ -12,21 +12,20 @@ business performance by quantifying patterns in sales seasonality, logistics eff
 
 <h2>📑 Index </h2>
 
-1. [🪪 About the Project](#-about-the-project)
-2. [🛠️ Technical Stack and Methodology](#️-Technical-Stack-and-Methodology)
-3. [⛓️‍💥 Main question](#️-Main-question)
-4. [🔍 Key Findings](#-Key-Findings)
-5. [🚩 Locations](#-Locations)
-6. [🚐 Deliveries](#-Deliveries)
-7. [🪠🧻🫧 Most recurring products](#-Most-recurring-products)
-8. [📈 Sales Forecast](#-Sales-Forecast)
-9. [📈 Life Cycle and Sales](#-Life-Cycle-and-Sales)
-10. [⚙️ Technologies used](#️-Technologies-used)
-11. [⌨️ Data](#️-Data)
-
+1. [🪪 About the Project](#about)
+2. [🛠️ Technical Stack and Methodology](#tech)
+3. [⛓️‍💥 Main question](#question)
+4. [🔍 Key Findings](#findings)
+5. [🚩 Locations](#locations)
+6. [🚐 Deliveries](#deliveries)
+7. [🪠🧻🫧 Most recurring products](#products)
+8. [📈 Sales Forecast](#forecast)
+9. [📈 Life Cycle and Sales](#lifecycle)
+10. [⚙️ Technologies used](#technologies)
+11. [⌨️ Data](#data)
 
 <br>
-<h2>🪪 About the Project </h2>
+<h2 id="about">🪪 About the Project </h2>
 
   Olist is a leading Brazilian e-commerce platform that connects small businesses with the country's main marketplaces. Operating as a
   SaaS technology company, it facilitates the sale of products from thousands of sellers to millions of customers.
@@ -34,7 +33,7 @@ This project consisted of an Olist performance audit (2016-2018) using real publ
 faces a critical **retention** challenge, the percentage of one-time purchases is 96.99% of customers who only buy once.
 
 <br>
-<h2>🛠️ Technical Stack and Methodology</h2>
+<h2 id="tech">🛠️ Technical Stack and Methodology</h2>
 
 - **Data cleaning:**  Management of null values, conversion of data types (timestamps), and merging of eight relational data sets.
 - **Geospatial analysis:**  Mapping of customer distribution and calculation of delay rates by state (comparison between SLA and actual delivery).
@@ -42,12 +41,12 @@ faces a critical **retention** challenge, the percentage of one-time purchases i
 - **Logistics optimization:** Detection of critical states (AL, MA, SE) with delay rates above 15%, suggesting the need for regional distribution centers.
 
 <br>
-<h2>⛓️‍💥 Main question:</h2>
+<h2 id="question">⛓️‍💥 Main question:</h2>
 How can we optimize the customer experience to maximize retention and lifetime value?
 
 <br>
 <br>
-<h2>🔍 Key Findings </h2>
+<h2 id="findings">🔍 Key Findings </h2>
  Types of customers and their rankings.
 
 - **What do they buy?** Their main categories are **Furniture and Decor** and **Bed, Bath, and Tableware**.
@@ -58,7 +57,7 @@ How can we optimize the customer experience to maximize retention and lifetime v
 The problem is not loyal customers, it is that the furniture products have quality/shipping issues.
 
 <br>
-<h2>🚩 Locations </h2>
+<h2 id="locations">🚩 Locations </h2>
 
 ***Who are our best customers and where are they located?***
 
@@ -77,7 +76,7 @@ Amount spending  per customer
 </p>
 
 <br>
-<h2> 🚐 Deliveries </h2>
+<h2 id="deliveries"> 🚐 Deliveries </h2>
 
 ***Do deliveries meet the estimated dates?***
 
@@ -93,7 +92,7 @@ Amount spending  per customer
 
 
 
-<h2> 🪠🧻🫧 Most recurring products </h2>
+<h2 id="products"> 🪠🧻🫧 Most recurring products </h2>
 
 **The products most purchased by repetitive customers are:**
  
@@ -106,14 +105,14 @@ Amount spending  per customer
 <br>
 
 **The products most purchased by new customers are:**
-- beleza_saude -------------                     7925
+- belleza_saude -------------                     7925
 - cama_mesa_banho--------           7745
 - esporte_lazer--------------                      6727
 - informatica_acessorios----    5711
 - relogios_presentes--------           5185
 
 <br>
-<h2> 📈 Sales Forecast </h2>
+<h2 id="forecast"> 📈 Sales Forecast </h2>
 A linear regression analysis confirms a steady **monthly upward trend** in revenue. The business is scaling, with significant seasonal peaks during **Black Friday (November)**.
 <p align="center">
   <img src="public/evolutions_sales.png" alt="Prediction" width="800">
@@ -126,7 +125,7 @@ Sales show marked seasonality with peaks on Black Friday (November) and natural 
   <img src="public/sales_projection.png" alt="Prediction" width="800">
 </p>
 
-<h2> 📈 Life Cycle and Sales </h2>
+<h2 id="lifecycle"> 📈 Life Cycle and Sales </h2>
 Well, the result is interesting. Half of repeat customers make another purchase within a month. But we also see that there are customers who place several orders on the same day.
 
 Data: 78.78 days. The “mean” is far from the median (29). The average is “skewed” by those customers who took 600 days (the maximum).
@@ -137,11 +136,11 @@ Data: 78.78 days. The “mean” is far from the median (29). The average is “
 <br>
 
 
-<h2>⚙️ Technologies used: </h2>
+<h2 id="technologies">⚙️ Technologies used: </h2>
  `Python`, `Pandas`, `Seaborn`, `Matplotlib`
 <br>
 
- <h2>⌨️ Data: </h2>
+ <h2 id="data">⌨️ Data: </h2>
  [Olist Brazilian E-Commerce Public Dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce)
  
 <br>
