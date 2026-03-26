@@ -3,7 +3,7 @@
   "artifacts": [
     {
       "report": {
-        "path": "olistpowerbi.Report"
+        "path": "OlistReport.Report"
       }
     }
   ],
