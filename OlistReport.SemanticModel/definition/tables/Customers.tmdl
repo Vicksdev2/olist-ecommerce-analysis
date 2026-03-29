@@ -14,7 +14,6 @@ table Customers
 
 	column customer_unique_id
 		dataType: string
-		isHidden
 		lineageTag: 563a11e5-d353-4e4b-91b0-d182aaaccdac
 		summarizeBy: none
 		sourceColumn: customer_unique_id

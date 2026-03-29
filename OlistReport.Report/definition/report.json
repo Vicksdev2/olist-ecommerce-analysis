@@ -9,6 +9,15 @@
         "page": "2.3.0"
       },
       "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "AccessibleTidal",
+      "reportVersionAtImport": {
+        "visual": "2.7.0",
+        "report": "3.2.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
     }
   },
   "objects": {
@@ -24,6 +33,19 @@
           }
         }
       }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
     ]
   },
   "resourcePackages": [
@@ -32,9 +54,55 @@
       "type": "SharedResources",
       "items": [
         {
+          "name": "AccessibleTidal",
+          "path": "BuiltInThemes/AccessibleTidal.json",
+          "type": "CustomTheme"
+        },
+        {
           "name": "CY26SU02",
           "path": "BaseThemes/CY26SU02.json",
           "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "_9ACA9E0D-1091-4585-B499-D50476537972660943369.png",
+          "path": "_9ACA9E0D-1091-4585-B499-D50476537972660943369.png",
+          "type": "Image"
+        },
+        {
+          "name": "image-removebg-preview3400924630772699.png",
+          "path": "image-removebg-preview3400924630772699.png",
+          "type": "Image"
+        },
+        {
+          "name": "LATEordera04477733648253501.png",
+          "path": "LATEordera04477733648253501.png",
+          "type": "Image"
+        },
+        {
+          "name": "orders9776391112596465.png",
+          "path": "orders9776391112596465.png",
+          "type": "Image"
+        },
+        {
+          "name": "revenue8509251462756835.png",
+          "path": "revenue8509251462756835.png",
+          "type": "Image"
+        },
+        {
+          "name": "reviiew635238378863279.png",
+          "path": "reviiew635238378863279.png",
+          "type": "Image"
+        },
+        {
+          "name": "TOV25758739593237323.png",
+          "path": "TOV25758739593237323.png",
+          "type": "Image"
         }
       ]
     }

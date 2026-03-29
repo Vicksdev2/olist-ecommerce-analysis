@@ -68,13 +68,13 @@ table Dim_Calendario
 			lineageTag: 78c9edc2-99f2-437f-9504-b3c27299d562
 			column: Year
 
-		level 'Month Nro'
-			lineageTag: ef6b534f-d2b8-45fc-b39d-084eec91d675
-			column: 'Month Nro'
-
 		level Month
 			lineageTag: 0ef05b44-ecfb-4a2d-816a-68f56582b82d
 			column: Month
+
+		level 'Month Nro'
+			lineageTag: ef6b534f-d2b8-45fc-b39d-084eec91d675
+			column: 'Month Nro'
 
 		level Date
 			lineageTag: 36323fcc-8a9b-4175-830f-a68d4f1d110b

@@ -12,11 +12,11 @@ table Products
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'categroy name'
+	column 'product category name'
 		dataType: string
-		lineageTag: 38c26ca4-ecfc-46be-aded-b900bc89ab92
+		lineageTag: 938fe004-84ed-4210-8042-8f8a7e0aea5a
 		summarizeBy: none
-		sourceColumn: categroy name
+		sourceColumn: product category name
 
 		annotation SummarizationSetBy = Automatic
 
@@ -28,12 +28,11 @@ table Products
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"product_id", type text}, {"product_category_name", type text}, {"product_name_lenght", Int64.Type}, {"product_description_lenght", Int64.Type}, {"product_photos_qty", Int64.Type}, {"product_weight_g", Int64.Type}, {"product_length_cm", Int64.Type}, {"product_height_cm", Int64.Type}, {"product_width_cm", Int64.Type}}),
 				    #"Merged Queries" = Table.NestedJoin(#"Changed Type", {"product_category_name"}, #"Category name", {"product_category_name"}, "Category name", JoinKind.LeftOuter),
-				    #"Expanded Category name" = Table.ExpandTableColumn(#"Merged Queries", "Category name", {"product_category_name"}, {"Category name.product_category_name"}),
-				    #"Renamed Columns" = Table.RenameColumns(#"Expanded Category name",{{"Category name.product_category_name", "categroy name"}}),
-				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"product_id", "categroy name", "product_category_name", "product_name_lenght", "product_description_lenght", "product_photos_qty", "product_weight_g", "product_length_cm", "product_height_cm", "product_width_cm"}),
-				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"product_category_name", "product_name_lenght", "product_description_lenght", "product_photos_qty", "product_weight_g", "product_length_cm", "product_height_cm", "product_width_cm"})
+				    #"Expanded Category name" = Table.ExpandTableColumn(#"Merged Queries", "Category name", {"product_category_name_english"}, {"Category name.product_category_name_english"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Expanded Category name",{"product_category_name", "product_name_lenght", "product_description_lenght", "product_photos_qty", "product_weight_g", "product_length_cm", "product_height_cm", "product_width_cm"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Category name.product_category_name_english", "product category name"}})
 				in
-				    #"Removed Columns"
+				    #"Renamed Columns"
 
 	annotation PBI_NavigationStepName = Navigation
 

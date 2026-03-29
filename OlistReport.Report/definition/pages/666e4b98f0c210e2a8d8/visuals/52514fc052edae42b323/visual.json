@@ -1,0 +1,306 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "52514fc052edae42b323",
+  "position": {
+    "x": 768.98596514132771,
+    "y": 378.61061426986095,
+    "z": 17003,
+    "height": 306.95267315098897,
+    "width": 493.04941575820874,
+    "tabOrder": 17003
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Products"
+                    }
+                  },
+                  "Property": "product category name"
+                }
+              },
+              "queryRef": "Products.product category name",
+              "nativeQueryRef": "product category name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measure"
+                    }
+                  },
+                  "Property": "Revenue"
+                }
+              },
+              "queryRef": "_Measure.Revenue",
+              "nativeQueryRef": "Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measure"
+                    }
+                  },
+                  "Property": "Late order rate"
+                }
+              },
+              "queryRef": "_Measure.Late order rate",
+              "nativeQueryRef": "Late order rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measure"
+                    }
+                  },
+                  "Property": "AVG review score"
+                }
+              },
+              "queryRef": "_Measure.AVG review score",
+              "nativeQueryRef": "AVG review score"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "187.33148574498102D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Products.product category name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "84.19244075984072D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measure.AVG review score"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "icon": {
+              "kind": "Icon",
+              "layout": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Before'"
+                  }
+                }
+              },
+              "verticalAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Top'"
+                  }
+                }
+              },
+              "value": {
+                "expr": {
+                  "Conditional": {
+                    "Cases": [
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 2,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "_Measure"
+                                      }
+                                    },
+                                    "Property": "Late Order Traffic Light"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "1D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 4,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "_Measure"
+                                      }
+                                    },
+                                    "Property": "Late Order Traffic Light"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'CircleLow'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 2,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "_Measure"
+                                      }
+                                    },
+                                    "Property": "Late Order Traffic Light"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "2D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 3,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "_Measure"
+                                      }
+                                    },
+                                    "Property": "Late Order Traffic Light"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "3D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SignMedium'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 2,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "_Measure"
+                                      }
+                                    },
+                                    "Property": "Late Order Traffic Light"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "3D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 3,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "_Measure"
+                                      }
+                                    },
+                                    "Property": "Late Order Traffic Light"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "4D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'CircleHigh'"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "_Measure.Late order rate"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -102,17 +102,19 @@ table Fact_sales
 		annotation UnderlyingDateTimeDataType = Date
 
 	column 'Delivery days'
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: b2fdf05d-b520-48a0-8ce6-9fd392891e07
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Delivery days
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Days late'
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: fb8b9728-a4bd-425f-9825-ace027171d68
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Days late
 
 		annotation SummarizationSetBy = Automatic
@@ -144,9 +146,10 @@ table Fact_sales
 				    #"Reordered Columns1" = Table.ReorderColumns(#"Changed Type",{"order_id", "product_id", "seller_id", "olist_orders_dataset.customer_id", "order_item_id", "price", "freight_value", "order_status", "order_purchase_timestamp", "order_delivered_customer_date", "order_estimated_delivery_date", "Delivery days", "Days late"}),
 				    #"Renamed Columns1" = Table.RenameColumns(#"Reordered Columns1",{{"olist_orders_dataset.customer_id", "customer_id"}}),
 				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns1",{{"price", Currency.Type}}),
-				    #"Reordered Columns2" = Table.ReorderColumns(#"Changed Type1",{"order_id", "product_id", "seller_id", "customer_id", "order_item_id", "price", "freight_value", "order_status", "order_purchase_timestamp", "order_estimated_delivery_date", "order_delivered_customer_date", "Delivery days", "Days late"})
+				    #"Reordered Columns2" = Table.ReorderColumns(#"Changed Type1",{"order_id", "product_id", "seller_id", "customer_id", "order_item_id", "price", "freight_value", "order_status", "order_purchase_timestamp", "order_estimated_delivery_date", "order_delivered_customer_date", "Delivery days", "Days late"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Reordered Columns2",{{"Delivery days", Int64.Type}, {"Days late", Int64.Type}})
 				in
-				    #"Reordered Columns2"
+				    #"Changed Type2"
 
 	annotation PBI_NavigationStepName = Navigation
 

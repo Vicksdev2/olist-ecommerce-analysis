@@ -3,91 +3,114 @@ table _Measure
 
 	measure Revenue = SUM(Fact_sales[price])
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 01 Sales & Revenue
 		lineageTag: 33fe74c7-cfdc-43a8-bd6b-2c9a6ad5ed00
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'Total Orders' = DISTINCTCOUNT(Fact_sales[order_id])
 		formatString: 0
+		displayFolder: 05 Orders & Customers
 		lineageTag: 219d8d9c-de60-405e-9fba-80cfe4d718a1
 
 	measure 'AVG order value' = DIVIDE([Revenue], [Total Orders])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 01 Sales & Revenue
 		lineageTag: 9ca28d19-0f6c-4bb4-b342-d1b2ae9aa7a9
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure Freight = SUM(Fact_sales[freight_value])
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 01 Sales & Revenue
 		lineageTag: a80dd9ba-f885-4315-b42a-f5fa83f8d954
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'AVG freight' = DIVIDE([Freight],[Total Orders])
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 01 Sales & Revenue
 		lineageTag: b07885fa-7b5a-485f-b4c9-fbb645e36216
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
-	measure 'Unique customers' = DISTINCTCOUNT(Fact_sales[customer_id])
+	measure 'Unique customers' = DISTINCTCOUNT(Customers[customer_unique_id])
 		formatString: 0
+		displayFolder: 05 Orders & Customers
 		lineageTag: a55ab273-8067-427d-bea9-4fc875a442dd
 
 	measure Items = COUNTROWS(Fact_sales)
 		formatString: 0
+		displayFolder: 05 Orders & Customers
 		lineageTag: 71ec1fc7-c67a-4e44-b1ad-9d110c5507d6
 
 	measure 'Total order value' = [Revenue] + [Freight]
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 01 Sales & Revenue
 		lineageTag: 759b7ead-762b-44b5-8d74-cf3e903be85c
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'Unique sellers' = DISTINCTCOUNT(Fact_sales[seller_id])
 		formatString: 0
+		displayFolder: 05 Orders & Customers
 		lineageTag: 190ee5ff-8efc-469e-bf83-1227c5525e06
 
 	measure 'Unique products' = DISTINCTCOUNT(Fact_sales[product_id])
 		formatString: 0
+		displayFolder: 05 Orders & Customers
 		lineageTag: 1323f9c4-7f48-4ab4-b258-5a49e69e61b1
 
 	measure 'AVG review score' = AVERAGE('Order reviews'[review_score])
+		formatString: 0
+		displayFolder: 04 Quality & Reviews
 		lineageTag: 3c843a97-5d32-4cb8-bae5-f9bbb9375b90
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure Reviews = COUNTROWS('Order reviews')
 		formatString: 0
+		displayFolder: 04 Quality & Reviews
 		lineageTag: d9c2ffe6-5cf4-44ef-84f5-73166610c1dc
 
 	measure 'Low reviews' = CALCULATE([Reviews], 'Order reviews'[review_score] <=2)
 		formatString: 0
+		displayFolder: 04 Quality & Reviews
 		lineageTag: 74196fb8-01df-4f62-ad85-9ddda9fc6a86
 
 	measure 'Low review rate' = DIVIDE([Low reviews], [Reviews])
+		formatString: 0
+		displayFolder: 04 Quality & Reviews
 		lineageTag: 03b88935-33db-45ab-93c6-83777079c15f
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'AVG delivery days' = AVERAGE(Fact_sales[Delivery days])
 		formatString: 0
+		displayFolder: 02 Logistic & SLA
 		lineageTag: b38593ca-035e-492a-93c3-7007d6dcb477
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'AVG days late' = AVERAGE(Fact_sales[Days late])
 		formatString: 0
+		displayFolder: 02 Logistic & SLA
 		lineageTag: 582c456e-6248-48fb-a4f8-d24ec7a9d1f8
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Late orders' =
 			
 			CALCULATE(
 			    COUNTROWS(Fact_sales),
-			    Fact_sales[Days late] > 0)
+			    VALUE(Fact_sales[Days late]) > 0
+			)
 		formatString: 0
+		displayFolder: 02 Logistic & SLA
 		lineageTag: 68dd447a-da68-401a-8dcc-c1d7c6f24393
 
-	measure 'Late order rate' = DIVIDE([Late orders],[Total Orders])
-		lineageTag: 8cf38ecb-b413-4630-9d20-e256514851f7
+		annotation PBI_FormatHint = {"isDecimal":true}
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+	measure 'Late order rate' = DIVIDE([Late orders],[Total Orders])
+		formatString: 0%;-0%;0%
+		displayFolder: 02 Logistic & SLA
+		lineageTag: 8cf38ecb-b413-4630-9d20-e256514851f7
 
 	measure 'On time orders' =
 			
@@ -95,6 +118,7 @@ table _Measure
 			    COUNTROWS(Fact_sales),
 			    Fact_sales[Days late] <= 0)
 		formatString: 0
+		displayFolder: 02 Logistic & SLA
 		lineageTag: bfca44f9-9472-4566-b42d-83e79775e4d2
 
 	measure 'Cancelled Orders' =
@@ -104,12 +128,190 @@ table _Measure
 			Fact_sales[order_status] = "canceled"
 			)
 		formatString: 0
+		displayFolder: 05 Orders & Customers
 		lineageTag: 9d0f3a28-bd37-415f-acaf-87b7150a111d
 
 	measure 'Canceled rate' = DIVIDE([Cancelled Orders], [Total Orders])
+		displayFolder: 05 Orders & Customers
 		lineageTag: 3e4dacc4-2e5b-4d8d-aa39-55646dbb22d0
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue MTD' = TOTALMTD([Revenue], 'Dim_Calendario'[Date])
+		formatString: 0
+		displayFolder: 01 Sales & Revenue
+		lineageTag: 5853acb2-935a-435c-8aec-ac14822332d7
+
+	measure 'Revenue YTD' = TOTALYTD([Revenue], 'Dim_Calendario'[Date])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 01 Sales & Revenue
+		lineageTag: 31de7a73-a4a8-4887-8f57-8b59a3c56f7c
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Orders MTD' = TOTALMTD([Total Orders], 'Dim_Calendario'[Date])
+		formatString: 0
+		displayFolder: 05 Orders & Customers
+		lineageTag: 07e80941-26fc-480b-a0d6-9458711028de
+
+	measure 'Orders YTD' = TOTALYTD([Total Orders], 'Dim_Calendario'[Date])
+		formatString: 0
+		displayFolder: 05 Orders & Customers
+		lineageTag: 19b6e23d-0c40-491f-a90d-88c9f2c4d87a
+
+	measure 'Revenue previous month' =
+			
+			CALCULATE(
+			    [Revenue],
+			   DATEADD('Dim_Calendario'[Date],-1,MONTH
+			))
+		formatString: #,0%;-#,0%;#,0%
+		displayFolder: 03 Time Intelligence
+		lineageTag: 656228d5-546c-4fb8-9d3c-0255ca5f46ee
+
+	measure 'Revenue previous year' =
+			
+			CALCULATE(
+			    [Revenue],
+			    SAMEPERIODLASTYEAR('Dim_Calendario'[Date]))
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: 03 Time Intelligence
+		lineageTag: bab9ab3c-d1ab-4b30-ae12-eb39239bec23
+
+	measure '% Revenue MoM' = DIVIDE([Revenue] - [Revenue previous month], [Revenue previous month])
+		formatString: 0%;-0%;0%
+		displayFolder: 03 Time Intelligence
+		lineageTag: 555a8c33-9b59-4efa-9aa2-077ca55c8ee3
+
+	measure '% Revenue YoY' = DIVIDE([Revenue] - [Revenue previous year], [Revenue previous year])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 03 Time Intelligence
+		lineageTag: 806b83ac-7e54-420c-b611-c75f4af6671a
+
+	measure 'Delivery SLA met' = ```
+			
+			CALCULATE(
+			    COUNTROWS(Fact_sales),
+			    Fact_sales[Days late] <= 0)
+			
+			```
+		formatString: 0%;-0%;0%
+		displayFolder: 02 Logistic & SLA
+		lineageTag: 52c5c7b6-62d3-418f-83b4-534eaf931d20
+
+	measure '% Delivery SLA' = DIVIDE([Delivery SLA met], [Total Orders])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 02 Logistic & SLA
+		lineageTag: 97bd05fe-dd31-4b30-abd8-511692d2a00f
+
+	measure 'Estimated delivery days' = AVERAGE(Fact_sales[order_estimated_delivery_date])
+		formatString: 0
+		displayFolder: 02 Logistic & SLA
+		lineageTag: 7e2949b0-d215-4aac-adbc-68c20823cf9b
+
+	measure 'Late Order Status Score' =
+			
+			SWITCH(
+			    TRUE(),
+			    [Late Order Rate] < 0.10, 3,
+			    [Late Order Rate] < 0.20, 2,
+			    1
+			)
+		formatString: 0
+		lineageTag: e8f171f4-87db-45eb-8e61-fbe1dfc62e53
+
+	measure 'Late Order Status Label' =
+			
+			SWITCH(
+			    [Late Order Status Score],
+			    3, "Healthy",
+			    2, "Watch",
+			    1, "Critical"
+			)
+		lineageTag: 3824f591-fb53-4538-9e95-bab2bec3d514
+
+	measure 'Late Order Status Color' =
+			
+			SWITCH(
+			    [Late Order Status Score],
+			    3, "#2E7D32",
+			    2, "#F9A825",
+			    1, "#C62828"
+			)
+		lineageTag: 2a2b496a-c9af-4fc8-982e-00107e1828d2
+
+	measure 'Review Status Score' =
+			
+			SWITCH(
+			    TRUE(),
+			    [AVG review score]>= 4, 3,
+			    [AVG review score]>= 3, 2,
+			    1
+			)
+		formatString: 0
+		lineageTag: d6b69e68-07f3-4c9f-82fb-18b73b9fa3b7
+
+	measure 'Review Status Label' =
+			
+			SWITCH(
+			    [Review Status Score],
+			    3, "Healthy",
+			    2, "Watch",
+			    1, "Critical"
+			)
+		lineageTag: 4d7d2491-b4c9-4d98-9de9-83590f4942f7
+
+	measure 'Review Status Color' =
+			
+			SWITCH(
+			    [Review Status Score],
+			    3, "#2E7D32",
+			    2, "#F9A825",
+			    1, "#C62828"
+			)
+		lineageTag: 103dcbde-93fe-4600-aca8-a038c67964de
+
+	measure 'Revenue MoM Status Score' =
+			
+			SWITCH(
+			    TRUE(),
+			    [% Revenue MoM] > 0.05, 3,
+			    [% Revenue MoM] >= -0.05, 2,
+			    1
+			)
+		formatString: 0
+		lineageTag: 29d5a095-7c2d-42b7-94fd-efc6b8d34907
+
+	measure 'Revenue MoM Status Label' =
+			
+			SWITCH(
+			    [Revenue MoM Status Score],
+			    3, "Growing",
+			    2, "Stable",
+			    1, "Declining"
+			)
+		lineageTag: 6ac596f8-7707-4a02-9ce0-67706191396d
+
+	measure 'Revenue MoM Status Color' =
+			
+			SWITCH(
+			    [Revenue MoM Status Score],
+			    3, "#2E7D32",
+			    2, "#F9A825",
+			    1, "#C62828"
+			)
+		lineageTag: 45b1e1c4-1a0b-49b1-bcbf-ca20f76c4403
+
+	measure 'Late Order Traffic Light' =
+			
+			SWITCH(
+			    TRUE(),
+			    [Late order rate] < 0.10, 3,
+			    [Late order rate] < 0.20, 2,
+			    1
+			)
+		formatString: 0
+		lineageTag: a6a7ff0c-eb41-4f28-8172-6aef1d06114f
 
 	column '.'
 		isHidden
