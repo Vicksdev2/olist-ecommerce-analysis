@@ -1,0 +1,100 @@
+table Customers
+	lineageTag: 9c9aae53-7c3d-4bae-83b0-ef74b234b7ca
+
+	column customer_id
+		dataType: string
+		isHidden
+		lineageTag: 3ae2e281-a99c-4ad1-8f64-00f71eacccdb
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_unique_id
+		dataType: string
+		isHidden
+		lineageTag: 563a11e5-d353-4e4b-91b0-d182aaaccdac
+		summarizeBy: none
+		sourceColumn: customer_unique_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'zip code'
+		dataType: string
+		lineageTag: 31b9b8e5-1000-4a52-9975-2083cc9799fc
+		summarizeBy: none
+		sourceColumn: zip code
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_city
+		dataType: string
+		lineageTag: 0491ed57-840f-4242-ad3e-0025438040c9
+		summarizeBy: none
+		sourceColumn: customer_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_state
+		dataType: string
+		lineageTag: 586e48ba-ff3e-4e87-a403-671db76226a1
+		summarizeBy: none
+		sourceColumn: customer_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		lineageTag: fad0b579-6d1a-48ea-993f-f22274bfc87d
+		summarizeBy: none
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		lineageTag: 0d7af0fb-fc13-4eb1-983a-c6d3444f4c80
+		summarizeBy: none
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	hierarchy 'Geolocation Hierarchy'
+		lineageTag: bf0c1e14-391d-454d-abed-bd240e743d25
+
+		level customer_state
+			lineageTag: 78da26c0-a2c6-473d-946a-3e740c58e5dc
+			column: customer_state
+
+		level customer_city
+			lineageTag: 5f255dbe-6bc0-41ed-ad68-69d61901d18c
+			column: customer_city
+
+	partition Customers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\barvi\Documents\Proyectos\Proyecto_2-Olist\Data\olist_customers_dataset.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"customer_id", type text}, {"customer_unique_id", type text}, {"customer_zip_code_prefix", Int64.Type}, {"customer_city", type text}, {"customer_state", type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type", {"customer_zip_code_prefix"}, Geolocation, {"geolocation_zip_code_prefix"}, "olist_geolocation_dataset", JoinKind.LeftOuter),
+				    #"Renamed Columns" = Table.RenameColumns(#"Merged Queries",{{"customer_zip_code_prefix", "zip code"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"zip code", type text}}),
+				    #"Expanded olist_geolocation_dataset" = Table.ExpandTableColumn(#"Changed Type1", "olist_geolocation_dataset", {"geolocation_lat", "geolocation_lng"}, {"olist_geolocation_dataset.geolocation_lat", "olist_geolocation_dataset.geolocation_lng"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Expanded olist_geolocation_dataset",{{"olist_geolocation_dataset.geolocation_lat", "latitude"}, {"olist_geolocation_dataset.geolocation_lng", "longitude"}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns1", {"customer_id"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

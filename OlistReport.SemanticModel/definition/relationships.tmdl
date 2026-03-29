@@ -1,0 +1,20 @@
+relationship 802a40f7-3c0f-1bca-62de-d7ee985e6491
+	fromColumn: Fact_sales.customer_id
+	toColumn: Customers.customer_id
+
+relationship 09a664d8-b4f7-be3a-85bb-4b51a27a1c4b
+	fromColumn: Fact_sales.order_id
+	toColumn: 'Order reviews'.order_id
+
+relationship 01f2c099-534f-2f12-3535-b57e75b51035
+	fromColumn: Fact_sales.product_id
+	toColumn: Products.product_id
+
+relationship 4ff2b3d4-0860-f2c5-a004-3969723c04d4
+	fromColumn: Fact_sales.seller_id
+	toColumn: Sellers.seller_id
+
+relationship cd88b2a8-364d-b661-7701-eda649efc663
+	fromColumn: Fact_sales.order_purchase_timestamp
+	toColumn: Dim_Calendario.Date
+

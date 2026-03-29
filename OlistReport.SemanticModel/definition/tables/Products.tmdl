@@ -1,0 +1,41 @@
+table Products
+	lineageTag: 6f4d5d39-d958-4e8e-914a-f5048c4e7827
+
+	column product_id
+		dataType: string
+		isHidden
+		lineageTag: 34cbbc1b-cd14-4e75-8712-559e5c6f7c03
+		summarizeBy: none
+		sourceColumn: product_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'categroy name'
+		dataType: string
+		lineageTag: 38c26ca4-ecfc-46be-aded-b900bc89ab92
+		summarizeBy: none
+		sourceColumn: categroy name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Products = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\barvi\Documents\Proyectos\Proyecto_2-Olist\Data\olist_products_dataset.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"product_id", type text}, {"product_category_name", type text}, {"product_name_lenght", Int64.Type}, {"product_description_lenght", Int64.Type}, {"product_photos_qty", Int64.Type}, {"product_weight_g", Int64.Type}, {"product_length_cm", Int64.Type}, {"product_height_cm", Int64.Type}, {"product_width_cm", Int64.Type}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type", {"product_category_name"}, #"Category name", {"product_category_name"}, "Category name", JoinKind.LeftOuter),
+				    #"Expanded Category name" = Table.ExpandTableColumn(#"Merged Queries", "Category name", {"product_category_name"}, {"Category name.product_category_name"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded Category name",{{"Category name.product_category_name", "categroy name"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"product_id", "categroy name", "product_category_name", "product_name_lenght", "product_description_lenght", "product_photos_qty", "product_weight_g", "product_length_cm", "product_height_cm", "product_width_cm"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"product_category_name", "product_name_lenght", "product_description_lenght", "product_photos_qty", "product_weight_g", "product_length_cm", "product_height_cm", "product_width_cm"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

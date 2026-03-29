@@ -1,0 +1,100 @@
+table Dim_Calendario
+	lineageTag: bbdf2c66-0ef8-40ad-884f-4289374208bb
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 25a4c961-06c3-4b13-a004-1f954f478bce
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: fe14501a-35b9-4d89-8c22-97d8e4b43676
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Nro'
+		formatString: 0
+		lineageTag: 3e39c35d-4233-4e08-a714-e3b8fc5f3150
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Nro]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 48946765-9ad1-42da-9f57-358e8aed9b1b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: cca8a041-8e8c-460c-95dc-6c6da6214118
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of the week'
+		lineageTag: 4947d815-6b56-4afa-9694-c14d66be1b8c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day of the week]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Monthkey = ('Dim_Calendario'[Year] * 100) + 'Dim_Calendario'[Month Nro]
+		formatString: 0
+		lineageTag: 5415408d-49d9-406f-8536-e5aba047263a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Calendar Hierarchy'
+		lineageTag: dbd1eabd-bf9d-400a-b3ed-2503f8e13c0e
+
+		level Year
+			lineageTag: 78c9edc2-99f2-437f-9504-b3c27299d562
+			column: Year
+
+		level 'Month Nro'
+			lineageTag: ef6b534f-d2b8-45fc-b39d-084eec91d675
+			column: 'Month Nro'
+
+		level Month
+			lineageTag: 0ef05b44-ecfb-4a2d-816a-68f56582b82d
+			column: Month
+
+		level Date
+			lineageTag: 36323fcc-8a9b-4175-830f-a68d4f1d110b
+			column: Date
+
+	partition Dim_Calendario = calculated
+		mode: import
+		source =
+				
+				VAR BaseCalendar = CALENDARAUTO()
+				
+				RETURN
+				ADDCOLUMNS(
+				    BaseCalendar,
+				    "Year", YEAR([Date]),
+				    "Month Nro", MONTH([Date]),
+				    "Month", FORMAT([Date], "MMMM"),
+				    "YearMonth", FORMAT([Date], "YYYYMM"),
+				    "Day of the week", FORMAT([Date], "DDDD")
+				)
+
+	annotation PBI_Id = ce50f7cb742a4f0c98010809c94d3884
+

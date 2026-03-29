@@ -1,0 +1,154 @@
+table Fact_sales
+	lineageTag: d122b9e0-02e8-407f-86f7-dc9d53eb8277
+
+	column order_id
+		dataType: string
+		lineageTag: 7ffe1b3a-76e5-41f5-953d-49f13947a2c4
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_item_id
+		dataType: int64
+		formatString: 0
+		lineageTag: e48d2c4b-a15f-4f96-aeb9-3ecdf945c72a
+		summarizeBy: sum
+		sourceColumn: order_item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		isHidden
+		lineageTag: 2574fef5-e24e-4881-9059-0dd694696fac
+		summarizeBy: none
+		sourceColumn: product_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_id
+		dataType: string
+		isHidden
+		lineageTag: 64a48d77-d3d6-4fe4-9b04-7e8cda23cf93
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: decimal
+		lineageTag: 99a2b6d2-f863-4288-853a-7dc0471603f5
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column freight_value
+		dataType: decimal
+		lineageTag: 15a765b2-5b8b-4ea0-b724-a1077b95efa1
+		summarizeBy: sum
+		sourceColumn: freight_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_status
+		dataType: string
+		lineageTag: d5cff743-8abd-4eab-bc74-56fa01189f96
+		summarizeBy: none
+		sourceColumn: order_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_timestamp
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7cb548d2-4ac0-4f94-a33e-c51bb4b27bf6
+		summarizeBy: none
+		sourceColumn: order_purchase_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column order_delivered_customer_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3a544503-8be2-4329-81e8-b7744f40338a
+		summarizeBy: none
+		sourceColumn: order_delivered_customer_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column order_estimated_delivery_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0ef3e76a-9a19-4ae6-9ea4-9a221b6c590a
+		summarizeBy: none
+		sourceColumn: order_estimated_delivery_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Delivery days'
+		dataType: string
+		lineageTag: b2fdf05d-b520-48a0-8ce6-9fd392891e07
+		summarizeBy: none
+		sourceColumn: Delivery days
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days late'
+		dataType: string
+		lineageTag: fb8b9728-a4bd-425f-9825-ace027171d68
+		summarizeBy: none
+		sourceColumn: Days late
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		isHidden
+		lineageTag: 67eee25d-85cf-41a5-a318-6c1aaf8588a2
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_sales = m
+		mode: import
+		source =
+				let
+				    Source = #"Order items",
+				    #"Merged Queries" = Table.NestedJoin(Source, {"order_id"}, Orders, {"order_id"}, "olist_orders_dataset", JoinKind.LeftOuter),
+				    #"Expanded olist_orders_dataset" = Table.ExpandTableColumn(#"Merged Queries", "olist_orders_dataset", {"customer_id", "order_status", "order_purchase_timestamp", "order_approved_at", "order_delivered_carrier_date", "order_delivered_customer_date", "order_estimated_delivery_date"}, {"olist_orders_dataset.customer_id", "olist_orders_dataset.order_status", "olist_orders_dataset.order_purchase_timestamp", "olist_orders_dataset.order_approved_at", "olist_orders_dataset.order_delivered_carrier_date", "olist_orders_dataset.order_delivered_customer_date", "olist_orders_dataset.order_estimated_delivery_date"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded olist_orders_dataset",{{"olist_orders_dataset.order_status", "order_status"}, {"olist_orders_dataset.order_purchase_timestamp", "order_purchase_timestamp"}, {"olist_orders_dataset.order_approved_at", "order_approved_at"}, {"olist_orders_dataset.order_delivered_carrier_date", "order_delivered_carrier_date"}, {"olist_orders_dataset.order_delivered_customer_date", "order_delivered_customer_date"}, {"olist_orders_dataset.order_estimated_delivery_date", "order_estimated_delivery_date"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Delivery days", each Duration.Days([order_delivered_customer_date] - [order_purchase_timestamp])),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Days late", each Duration.Days([order_delivered_customer_date] - [order_estimated_delivery_date])),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Custom1",{"shipping_limit_date", "order_approved_at", "order_delivered_carrier_date"}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Removed Columns",{"order_id", "product_id", "seller_id", "order_item_id", "price", "freight_value", "olist_orders_dataset.customer_id", "order_status", "order_purchase_timestamp", "order_delivered_customer_date", "order_estimated_delivery_date", "Delivery days", "Days late"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Reordered Columns",{{"freight_value", Currency.Type}}),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Changed Type",{"order_id", "product_id", "seller_id", "olist_orders_dataset.customer_id", "order_item_id", "price", "freight_value", "order_status", "order_purchase_timestamp", "order_delivered_customer_date", "order_estimated_delivery_date", "Delivery days", "Days late"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Reordered Columns1",{{"olist_orders_dataset.customer_id", "customer_id"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns1",{{"price", Currency.Type}}),
+				    #"Reordered Columns2" = Table.ReorderColumns(#"Changed Type1",{"order_id", "product_id", "seller_id", "customer_id", "order_item_id", "price", "freight_value", "order_status", "order_purchase_timestamp", "order_estimated_delivery_date", "order_delivered_customer_date", "Delivery days", "Days late"})
+				in
+				    #"Reordered Columns2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

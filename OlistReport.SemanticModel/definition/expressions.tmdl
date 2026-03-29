@@ -1,0 +1,69 @@
+expression Geolocation =
+		let
+		    Source = Csv.Document(File.Contents("C:\Users\barvi\Documents\Proyectos\Proyecto_2-Olist\Data\olist_geolocation_dataset.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"geolocation_zip_code_prefix", Int64.Type}, {"geolocation_lat", type number}, {"geolocation_lng", type number}, {"geolocation_city", type text}, {"geolocation_state", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 1dc58ce5-7e49-4a21-9c15-b381e54e7af5
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Order items' =
+		let
+		    Source = Csv.Document(File.Contents("C:\Users\barvi\Documents\Proyectos\Proyecto_2-Olist\Data\olist_order_items_dataset.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"order_id", type text}, {"order_item_id", Int64.Type}, {"product_id", type text}, {"seller_id", type text}, {"shipping_limit_date", type datetime}, {"price", type number}, {"freight_value", type number}})
+		in
+		    #"Changed Type"
+	lineageTag: b0d03a00-6540-4bd3-98e5-c40aade99ccd
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Order payments' =
+		let
+		    Source = Csv.Document(File.Contents("C:\Users\barvi\Documents\Proyectos\Proyecto_2-Olist\Data\olist_order_payments_dataset.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"order_id", type text}, {"payment_sequential", Int64.Type}, {"payment_type", type text}, {"payment_installments", Int64.Type}, {"payment_value", type number}})
+		in
+		    #"Changed Type"
+	lineageTag: bceb0616-36a9-4b77-aa61-70d21510ff71
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Category name' =
+		let
+		    Source = Csv.Document(File.Contents("C:\Users\barvi\Documents\Proyectos\Proyecto_2-Olist\Data\product_category_name_translation.csv"),[Delimiter=",", Columns=2, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}}),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"product_category_name", type text}, {"product_category_name_english", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 0871b506-b8a6-4164-9396-195b6bb7c770
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Orders =
+		let
+		    Source = Csv.Document(File.Contents("C:\Users\barvi\Documents\Proyectos\Proyecto_2-Olist\Data\olist_orders_dataset.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"order_id", type text}, {"customer_id", type text}, {"order_status", type text}, {"order_purchase_timestamp", type datetime}, {"order_approved_at", type datetime}, {"order_delivered_carrier_date", type datetime}, {"order_delivered_customer_date", type datetime}, {"order_estimated_delivery_date", type datetime}}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"order_delivered_carrier_date", type date}, {"order_delivered_customer_date", type date}, {"order_estimated_delivery_date", type date}, {"order_approved_at", type date}, {"order_purchase_timestamp", type date}}),
+		    #"Added Custom" = Table.AddColumn(#"Changed Type1", "Delivery_time_(days) ", each [order_delivered_customer_date] - [order_purchase_timestamp]),
+		    #"Removed Columns" = Table.RemoveColumns(#"Added Custom",{"Delivery_time_(days) "})
+		in
+		    #"Removed Columns"
+	lineageTag: bda3149d-a0a3-47f0-aa0c-a9ad3e6dd478
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

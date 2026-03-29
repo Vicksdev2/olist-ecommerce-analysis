@@ -1,0 +1,130 @@
+table _Measure
+	lineageTag: a7bf0586-63bf-4516-b2c1-fb2105b4bcf2
+
+	measure Revenue = SUM(Fact_sales[price])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 33fe74c7-cfdc-43a8-bd6b-2c9a6ad5ed00
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Orders' = DISTINCTCOUNT(Fact_sales[order_id])
+		formatString: 0
+		lineageTag: 219d8d9c-de60-405e-9fba-80cfe4d718a1
+
+	measure 'AVG order value' = DIVIDE([Revenue], [Total Orders])
+		lineageTag: 9ca28d19-0f6c-4bb4-b342-d1b2ae9aa7a9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Freight = SUM(Fact_sales[freight_value])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: a80dd9ba-f885-4315-b42a-f5fa83f8d954
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'AVG freight' = DIVIDE([Freight],[Total Orders])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: b07885fa-7b5a-485f-b4c9-fbb645e36216
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Unique customers' = DISTINCTCOUNT(Fact_sales[customer_id])
+		formatString: 0
+		lineageTag: a55ab273-8067-427d-bea9-4fc875a442dd
+
+	measure Items = COUNTROWS(Fact_sales)
+		formatString: 0
+		lineageTag: 71ec1fc7-c67a-4e44-b1ad-9d110c5507d6
+
+	measure 'Total order value' = [Revenue] + [Freight]
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 759b7ead-762b-44b5-8d74-cf3e903be85c
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Unique sellers' = DISTINCTCOUNT(Fact_sales[seller_id])
+		formatString: 0
+		lineageTag: 190ee5ff-8efc-469e-bf83-1227c5525e06
+
+	measure 'Unique products' = DISTINCTCOUNT(Fact_sales[product_id])
+		formatString: 0
+		lineageTag: 1323f9c4-7f48-4ab4-b258-5a49e69e61b1
+
+	measure 'AVG review score' = AVERAGE('Order reviews'[review_score])
+		lineageTag: 3c843a97-5d32-4cb8-bae5-f9bbb9375b90
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Reviews = COUNTROWS('Order reviews')
+		formatString: 0
+		lineageTag: d9c2ffe6-5cf4-44ef-84f5-73166610c1dc
+
+	measure 'Low reviews' = CALCULATE([Reviews], 'Order reviews'[review_score] <=2)
+		formatString: 0
+		lineageTag: 74196fb8-01df-4f62-ad85-9ddda9fc6a86
+
+	measure 'Low review rate' = DIVIDE([Low reviews], [Reviews])
+		lineageTag: 03b88935-33db-45ab-93c6-83777079c15f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AVG delivery days' = AVERAGE(Fact_sales[Delivery days])
+		formatString: 0
+		lineageTag: b38593ca-035e-492a-93c3-7007d6dcb477
+
+	measure 'AVG days late' = AVERAGE(Fact_sales[Days late])
+		formatString: 0
+		lineageTag: 582c456e-6248-48fb-a4f8-d24ec7a9d1f8
+
+	measure 'Late orders' =
+			
+			CALCULATE(
+			    COUNTROWS(Fact_sales),
+			    Fact_sales[Days late] > 0)
+		formatString: 0
+		lineageTag: 68dd447a-da68-401a-8dcc-c1d7c6f24393
+
+	measure 'Late order rate' = DIVIDE([Late orders],[Total Orders])
+		lineageTag: 8cf38ecb-b413-4630-9d20-e256514851f7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'On time orders' =
+			
+			CALCULATE(
+			    COUNTROWS(Fact_sales),
+			    Fact_sales[Days late] <= 0)
+		formatString: 0
+		lineageTag: bfca44f9-9472-4566-b42d-83e79775e4d2
+
+	measure 'Cancelled Orders' =
+			
+			CALCULATE(
+			COUNTROWS(Fact_sales),
+			Fact_sales[order_status] = "canceled"
+			)
+		formatString: 0
+		lineageTag: 9d0f3a28-bd37-415f-acaf-87b7150a111d
+
+	measure 'Canceled rate' = DIVIDE([Cancelled Orders], [Total Orders])
+		lineageTag: 3e4dacc4-2e5b-4d8d-aa39-55646dbb22d0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '.'
+		isHidden
+		formatString: 0
+		lineageTag: 0210e7e4-7049-4ae1-bc28-a6dd3f44014b
+		summarizeBy: sum
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measure = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 9ffbcb85229f46b1bb5db4775c569667
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

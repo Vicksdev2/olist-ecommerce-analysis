@@ -1,0 +1,54 @@
+table Sellers
+	lineageTag: 12598509-9a98-4579-b208-7274e19a6826
+
+	column seller_id
+		dataType: string
+		isHidden
+		lineageTag: 214d3d69-688b-4d8f-84c2-b2e7e538a862
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'zip code'
+		dataType: string
+		lineageTag: aa31803e-74f4-4348-a2e2-c7f01a28812e
+		summarizeBy: none
+		sourceColumn: zip code
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_city
+		dataType: string
+		lineageTag: 0b5cd3be-d0aa-4ccf-be66-14d87ead4649
+		summarizeBy: none
+		sourceColumn: seller_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_state
+		dataType: string
+		lineageTag: 6110f9b5-9e07-4103-91b9-c3e326534418
+		summarizeBy: none
+		sourceColumn: seller_state
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sellers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\barvi\Documents\Proyectos\Proyecto_2-Olist\Data\olist_sellers_dataset.csv"),[Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"seller_id", type text}, {"seller_zip_code_prefix", Int64.Type}, {"seller_city", type text}, {"seller_state", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"seller_zip_code_prefix", "zip code"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"zip code", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
