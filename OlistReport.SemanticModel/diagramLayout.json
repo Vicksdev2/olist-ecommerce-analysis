@@ -5,7 +5,7 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 24.390243902439025
+        "y": 0
       },
       "nodes": [
         {
@@ -81,7 +81,7 @@
           "nodeIndex": "Dim_Calendario",
           "nodeLineageTag": "bbdf2c66-0ef8-40ad-884f-4289374208bb",
           "size": {
-            "height": 268.29268292682934,
+            "height": 385.87873819035576,
             "width": 234
           },
           "zIndex": 7
@@ -101,7 +101,7 @@
         }
       ],
       "name": "All tables",
-      "zoomValue": 82,
+      "zoomValue": 73.137924226867042,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

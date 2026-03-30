@@ -35,6 +35,7 @@ table Dim_Calendario
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Month]
+		sortByColumn: 'Month Nro'
 
 		annotation SummarizationSetBy = Automatic
 

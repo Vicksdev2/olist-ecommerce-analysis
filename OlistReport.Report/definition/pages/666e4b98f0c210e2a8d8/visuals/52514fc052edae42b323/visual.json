@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "52514fc052edae42b323",
   "position": {
-    "x": 768.98596514132771,
-    "y": 378.61061426986095,
-    "z": 17003,
-    "height": 306.95267315098897,
-    "width": 493.04941575820874,
-    "tabOrder": 17003
+    "x": 746.60701600592472,
+    "y": 378.87520215226033,
+    "z": 19000,
+    "height": 325.63456917007994,
+    "width": 515.07217024621013,
+    "tabOrder": 19000
   },
   "visual": {
     "visualType": "tableEx",
@@ -65,14 +65,31 @@
                       "Entity": "_Measure"
                     }
                   },
-                  "Property": "AVG review score"
+                  "Property": "Total Orders"
                 }
               },
-              "queryRef": "_Measure.AVG review score",
-              "nativeQueryRef": "AVG review score"
+              "queryRef": "_Measure.Total Orders",
+              "nativeQueryRef": "Total Orders"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measure"
+                  }
+                },
+                "Property": "Late order rate"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {
@@ -82,7 +99,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "187.33148574498102D"
+                  "Value": "197.24148841902155D"
                 }
               }
             }
@@ -96,13 +113,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "84.19244075984072D"
+                  "Value": "76.95138496227527D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measure.AVG review score"
+            "metadata": "_Measure.Late order rate"
           }
         }
       ],
@@ -131,45 +148,21 @@
                     "Cases": [
                       {
                         "Condition": {
-                          "And": {
+                          "Comparison": {
+                            "ComparisonKind": 2,
                             "Left": {
-                              "Comparison": {
-                                "ComparisonKind": 2,
-                                "Left": {
-                                  "Measure": {
-                                    "Expression": {
-                                      "SourceRef": {
-                                        "Entity": "_Measure"
-                                      }
-                                    },
-                                    "Property": "Late Order Traffic Light"
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "_Measure"
                                   }
                                 },
-                                "Right": {
-                                  "Literal": {
-                                    "Value": "1D"
-                                  }
-                                }
+                                "Property": "Late Order Status Score"
                               }
                             },
                             "Right": {
-                              "Comparison": {
-                                "ComparisonKind": 4,
-                                "Left": {
-                                  "Measure": {
-                                    "Expression": {
-                                      "SourceRef": {
-                                        "Entity": "_Measure"
-                                      }
-                                    },
-                                    "Property": "Late Order Traffic Light"
-                                  }
-                                },
-                                "Right": {
-                                  "Literal": {
-                                    "Value": "2D"
-                                  }
-                                }
+                              "Literal": {
+                                "Value": "3D"
                               }
                             }
                           }
@@ -193,7 +186,7 @@
                                         "Entity": "_Measure"
                                       }
                                     },
-                                    "Property": "Late Order Traffic Light"
+                                    "Property": "Late Order Status Score"
                                   }
                                 },
                                 "Right": {
@@ -213,7 +206,7 @@
                                         "Entity": "_Measure"
                                       }
                                     },
-                                    "Property": "Late Order Traffic Light"
+                                    "Property": "Late Order Status Score"
                                   }
                                 },
                                 "Right": {
@@ -244,12 +237,12 @@
                                         "Entity": "_Measure"
                                       }
                                     },
-                                    "Property": "Late Order Traffic Light"
+                                    "Property": "Late Order Status Score"
                                   }
                                 },
                                 "Right": {
                                   "Literal": {
-                                    "Value": "3D"
+                                    "Value": "1D"
                                   }
                                 }
                               }
@@ -264,12 +257,12 @@
                                         "Entity": "_Measure"
                                       }
                                     },
-                                    "Property": "Late Order Traffic Light"
+                                    "Property": "Late Order Status Score"
                                   }
                                 },
                                 "Right": {
                                   "Literal": {
-                                    "Value": "4D"
+                                    "Value": "2D"
                                   }
                                 }
                               }
@@ -301,6 +294,74 @@
         }
       ]
     },
+    "visualContainerObjects": {
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'4c0f0113842efeee70ca'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b6cca4156ca7ec9ceb61",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Products"
+              }
+            },
+            "Property": "product category name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4c423cb751fa3fd7c795",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measure"
+              }
+            },
+            "Property": "Revenue"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8af9f4861c8fc28e2a03",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measure"
+              }
+            },
+            "Property": "Late order rate"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

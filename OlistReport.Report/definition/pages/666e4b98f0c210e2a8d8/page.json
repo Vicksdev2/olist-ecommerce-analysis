@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "666e4b98f0c210e2a8d8",
-  "displayName": "Page 1",
+  "displayName": "Executive Overview",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280,

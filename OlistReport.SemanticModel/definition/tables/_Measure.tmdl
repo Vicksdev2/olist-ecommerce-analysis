@@ -165,7 +165,7 @@ table _Measure
 			    [Revenue],
 			   DATEADD('Dim_Calendario'[Date],-1,MONTH
 			))
-		formatString: #,0%;-#,0%;#,0%
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
 		displayFolder: 03 Time Intelligence
 		lineageTag: 656228d5-546c-4fb8-9d3c-0255ca5f46ee
 
@@ -174,17 +174,30 @@ table _Measure
 			CALCULATE(
 			    [Revenue],
 			    SAMEPERIODLASTYEAR('Dim_Calendario'[Date]))
-		formatString: #,0.00%;-#,0.00%;#,0.00%
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
 		displayFolder: 03 Time Intelligence
 		lineageTag: bab9ab3c-d1ab-4b30-ae12-eb39239bec23
 
-	measure '% Revenue MoM' = DIVIDE([Revenue] - [Revenue previous month], [Revenue previous month])
-		formatString: 0%;-0%;0%
+	measure '% Revenue MoM' = ```
+			
+			VAR actual = [Revenue]
+			VAR anterior = [Revenue previous month]
+			VAR diferencia = actual - anterior
+			RETURN 
+			    DIVIDE(diferencia, anterior, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
 		displayFolder: 03 Time Intelligence
 		lineageTag: 555a8c33-9b59-4efa-9aa2-077ca55c8ee3
 
-	measure '% Revenue YoY' = DIVIDE([Revenue] - [Revenue previous year], [Revenue previous year])
-		formatString: 0.00%;-0.00%;0.00%
+	measure '% Revenue YoY' = ```
+			
+			VAR _Actual = [Revenue]
+			VAR _Anterior = [Revenue previous year]
+			RETURN 
+			    DIVIDE(_Actual - _Anterior, _Anterior, 0)
+			```
+		formatString: #,0%;-#,0%;#,0%
 		displayFolder: 03 Time Intelligence
 		lineageTag: 806b83ac-7e54-420c-b611-c75f4af6671a
 
@@ -209,109 +222,44 @@ table _Measure
 		displayFolder: 02 Logistic & SLA
 		lineageTag: 7e2949b0-d215-4aac-adbc-68c20823cf9b
 
-	measure 'Late Order Status Score' =
+	measure 'Late Order Status Score' = ```
 			
 			SWITCH(
 			    TRUE(),
-			    [Late Order Rate] < 0.10, 3,
-			    [Late Order Rate] < 0.20, 2,
-			    1
+			    [Late order rate] < 0.10, 1,
+			    [Late order rate] < 0.20, 2,
+			    3
 			)
+			
+			```
 		formatString: 0
 		lineageTag: e8f171f4-87db-45eb-8e61-fbe1dfc62e53
 
-	measure 'Late Order Status Label' =
+	measure 'Late Order Status Color' = ```
 			
 			SWITCH(
 			    [Late Order Status Score],
-			    3, "Healthy",
-			    2, "Watch",
-			    1, "Critical"
-			)
-		lineageTag: 3824f591-fb53-4538-9e95-bab2bec3d514
-
-	measure 'Late Order Status Color' =
-			
-			SWITCH(
-			    [Late Order Status Score],
-			    3, "#2E7D32",
+			    1, "#2E7D32",
 			    2, "#F9A825",
-			    1, "#C62828"
+			    3, "#C62828"
 			)
+			
+			```
 		lineageTag: 2a2b496a-c9af-4fc8-982e-00107e1828d2
 
-	measure 'Review Status Score' =
-			
-			SWITCH(
-			    TRUE(),
-			    [AVG review score]>= 4, 3,
-			    [AVG review score]>= 3, 2,
-			    1
-			)
-		formatString: 0
-		lineageTag: d6b69e68-07f3-4c9f-82fb-18b73b9fa3b7
+	measure 'Absolute Revenue MoM' = [Revenue] - [Revenue previous month]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: 03 Time Intelligence
+		lineageTag: a2ed485b-fe87-4d4f-8f88-264642fbef17
 
-	measure 'Review Status Label' =
-			
-			SWITCH(
-			    [Review Status Score],
-			    3, "Healthy",
-			    2, "Watch",
-			    1, "Critical"
-			)
-		lineageTag: 4d7d2491-b4c9-4d98-9de9-83590f4942f7
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
-	measure 'Review Status Color' =
-			
-			SWITCH(
-			    [Review Status Score],
-			    3, "#2E7D32",
-			    2, "#F9A825",
-			    1, "#C62828"
-			)
-		lineageTag: 103dcbde-93fe-4600-aca8-a038c67964de
+	measure 'Absolute revenue YoY' = [Revenue] - [Revenue previous year]
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: 03 Time Intelligence
+		lineageTag: 0f749c79-8b2f-42f5-9d43-2e6fd3767391
 
-	measure 'Revenue MoM Status Score' =
-			
-			SWITCH(
-			    TRUE(),
-			    [% Revenue MoM] > 0.05, 3,
-			    [% Revenue MoM] >= -0.05, 2,
-			    1
-			)
-		formatString: 0
-		lineageTag: 29d5a095-7c2d-42b7-94fd-efc6b8d34907
-
-	measure 'Revenue MoM Status Label' =
-			
-			SWITCH(
-			    [Revenue MoM Status Score],
-			    3, "Growing",
-			    2, "Stable",
-			    1, "Declining"
-			)
-		lineageTag: 6ac596f8-7707-4a02-9ce0-67706191396d
-
-	measure 'Revenue MoM Status Color' =
-			
-			SWITCH(
-			    [Revenue MoM Status Score],
-			    3, "#2E7D32",
-			    2, "#F9A825",
-			    1, "#C62828"
-			)
-		lineageTag: 45b1e1c4-1a0b-49b1-bcbf-ca20f76c4403
-
-	measure 'Late Order Traffic Light' =
-			
-			SWITCH(
-			    TRUE(),
-			    [Late order rate] < 0.10, 3,
-			    [Late order rate] < 0.20, 2,
-			    1
-			)
-		formatString: 0
-		lineageTag: a6a7ff0c-eb41-4f28-8172-6aef1d06114f
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	column '.'
 		isHidden

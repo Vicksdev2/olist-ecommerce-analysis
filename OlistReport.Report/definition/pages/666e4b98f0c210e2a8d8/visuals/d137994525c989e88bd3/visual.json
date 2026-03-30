@@ -4,10 +4,10 @@
   "position": {
     "x": 314.3705934697789,
     "y": 185.04757341364913,
-    "z": 5000,
+    "z": 4000,
     "height": 174.53350674241906,
     "width": 947.31740707782876,
-    "tabOrder": 5000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "lineChart",
@@ -54,46 +54,6 @@
               "queryRef": "Dim_Calendario.Calendar Hierarchy.Month",
               "nativeQueryRef": "Calendar Hierarchy Month",
               "active": true
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Dim_Calendario"
-                        }
-                      },
-                      "Hierarchy": "Calendar Hierarchy"
-                    }
-                  },
-                  "Level": "Month Nro"
-                }
-              },
-              "queryRef": "Dim_Calendario.Calendar Hierarchy.Month Nro",
-              "nativeQueryRef": "Calendar Hierarchy Month Nro",
-              "active": false
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Dim_Calendario"
-                        }
-                      },
-                      "Hierarchy": "Calendar Hierarchy"
-                    }
-                  },
-                  "Level": "Date"
-                }
-              },
-              "queryRef": "Dim_Calendario.Calendar Hierarchy.Date",
-              "nativeQueryRef": "Calendar Hierarchy Date",
-              "active": false
             }
           ]
         },
@@ -120,24 +80,18 @@
         "sort": [
           {
             "field": {
-              "HierarchyLevel": {
+              "Measure": {
                 "Expression": {
-                  "Hierarchy": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "Dim_Calendario"
-                      }
-                    },
-                    "Hierarchy": "Calendar Hierarchy"
+                  "SourceRef": {
+                    "Entity": "_Measure"
                   }
                 },
-                "Level": "Year"
+                "Property": "Revenue"
               }
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "objects": {
