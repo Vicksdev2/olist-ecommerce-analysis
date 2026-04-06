@@ -56,6 +56,7 @@ table Dim_Calendario
 		annotation SummarizationSetBy = Automatic
 
 	column Monthkey = ('Dim_Calendario'[Year] * 100) + 'Dim_Calendario'[Month Nro]
+		isHidden
 		formatString: 0
 		lineageTag: 5415408d-49d9-406f-8536-e5aba047263a
 		summarizeBy: none

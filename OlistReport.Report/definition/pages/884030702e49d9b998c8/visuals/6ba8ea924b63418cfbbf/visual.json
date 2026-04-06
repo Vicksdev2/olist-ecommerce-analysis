@@ -1,0 +1,102 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "6ba8ea924b63418cfbbf",
+  "position": {
+    "x": 165,
+    "y": 414,
+    "z": 11001,
+    "height": 277,
+    "width": 514,
+    "tabOrder": 11001
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Products"
+                    }
+                  },
+                  "Property": "product category name"
+                }
+              },
+              "queryRef": "Products.product category name",
+              "nativeQueryRef": "product category name",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measure"
+                    }
+                  },
+                  "Property": "% Delivery SLA"
+                }
+              },
+              "queryRef": "_Measure.% Delivery SLA",
+              "nativeQueryRef": "% Delivery SLA"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measure"
+                    }
+                  },
+                  "Property": "AVG freight"
+                }
+              },
+              "queryRef": "_Measure.AVG freight",
+              "nativeQueryRef": "AVG freight"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measure"
+                    }
+                  },
+                  "Property": "Avg Days Late"
+                }
+              },
+              "queryRef": "_Measure.AVG days late",
+              "nativeQueryRef": "Avg Days Late"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measure"
+                  }
+                },
+                "Property": "% Delivery SLA"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

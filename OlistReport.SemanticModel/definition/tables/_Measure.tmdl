@@ -88,12 +88,19 @@ table _Measure
 
 		annotation PBI_FormatHint = {"isDecimal":true}
 
-	measure 'AVG days late' = AVERAGE(Fact_sales[Days late])
+	measure 'Avg Days Late' = ```
+			
+			AVERAGEX(
+			    FILTER(
+			        Fact_sales, 
+			        Fact_sales[Days late] > 0
+			    ), 
+			    Fact_sales[Days late]
+			)
+			```
 		formatString: 0
 		displayFolder: 02 Logistic & SLA
 		lineageTag: 582c456e-6248-48fb-a4f8-d24ec7a9d1f8
-
-		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Late orders' =
 			
@@ -131,7 +138,7 @@ table _Measure
 		displayFolder: 05 Orders & Customers
 		lineageTag: 9d0f3a28-bd37-415f-acaf-87b7150a111d
 
-	measure 'Canceled rate' = DIVIDE([Cancelled Orders], [Total Orders])
+	measure 'Cancel Rate' = DIVIDE(COUNTROWS(FILTER(Fact_sales, Fact_sales[order_status] = "canceled")), [Total Orders])
 		displayFolder: 05 Orders & Customers
 		lineageTag: 3e4dacc4-2e5b-4d8d-aa39-55646dbb22d0
 
@@ -212,15 +219,10 @@ table _Measure
 		displayFolder: 02 Logistic & SLA
 		lineageTag: 52c5c7b6-62d3-418f-83b4-534eaf931d20
 
-	measure '% Delivery SLA' = DIVIDE([Delivery SLA met], [Total Orders])
+	measure '% Delivery SLA' = DIVIDE(CALCULATE(DISTINCTCOUNT(Fact_sales[order_id]), Fact_sales[Days late] <= 0),  DISTINCTCOUNT(Fact_sales[order_id])  )
 		formatString: 0.00%;-0.00%;0.00%
 		displayFolder: 02 Logistic & SLA
 		lineageTag: 97bd05fe-dd31-4b30-abd8-511692d2a00f
-
-	measure 'Estimated delivery days' = AVERAGE(Fact_sales[order_estimated_delivery_date])
-		formatString: 0
-		displayFolder: 02 Logistic & SLA
-		lineageTag: 7e2949b0-d215-4aac-adbc-68c20823cf9b
 
 	measure 'Late Order Status Score' = ```
 			
@@ -247,19 +249,55 @@ table _Measure
 			```
 		lineageTag: 2a2b496a-c9af-4fc8-982e-00107e1828d2
 
-	measure 'Absolute Revenue MoM' = [Revenue] - [Revenue previous month]
-		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
-		displayFolder: 03 Time Intelligence
-		lineageTag: a2ed485b-fe87-4d4f-8f88-264642fbef17
-
-		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
-
-	measure 'Absolute revenue YoY' = [Revenue] - [Revenue previous year]
+	measure 'Median ticket' = MEDIANX(Fact_sales, Fact_sales[price])
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
-		displayFolder: 03 Time Intelligence
-		lineageTag: 0f749c79-8b2f-42f5-9d43-2e6fd3767391
+		lineageTag: ce341b8b-d733-422e-9acd-7e69017538df
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Retention rate' = DIVIDE([Total Orders],[Unique customers])
+		lineageTag: fb68560c-b9e0-4f95-ae09-9798eb962d83
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ordes purchased' = COUNTROWS(FILTER(Fact_sales, NOT(ISBLANK(Fact_sales[order_purchase_timestamp]))))
+		formatString: 0
+		lineageTag: 70fe1a91-bdad-4f7d-9b2b-2143e8ee954b
+
+	measure 'orders shipped' = COUNTROWS(FILTER(Fact_sales,NOT(ISBLANK(Fact_sales[order_delivered_customer_date]))))
+		formatString: 0
+		lineageTag: 3ef90f2c-8e09-4eca-8f56-a1ec4170eca3
+
+	measure 'Late Alert' = IF([Late order rate] > 0.15, "🔴Review Logistics", BLANK())
+		lineageTag: ef7d7f64-eda4-4232-af6b-77934b954667
+
+	measure 'Low AOV Alert' = IF([AVG order value] < 20, "⚠️ Upsell Needed", BLANK())
+		lineageTag: 84377d0d-c025-49ad-ad43-8022c2fda63c
+
+	measure 'Revenue Latency Risk' = ```
+			
+			CALCULATE(
+			    [Revenue], 
+			    Fact_sales[Days late] > 0
+			)
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: cdc42640-34f1-488d-bde3-f4f2aa4f3d27
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'review score level' = FORMAT(AVERAGE('Order reviews'[review_score]), "0.0") & " /5"
+		lineageTag: dfca1e64-9b1a-4420-8dd8-03fddabefd03
+
+	measure 'Avg Delay Severity' = CALCULATE(AVERAGE(Fact_sales[Days late]), Fact_sales[Days late] > 0)
+		lineageTag: 90c4240c-be43-4e29-9d59-584eb297f191
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Customer frequency' = CALCULATE(COUNT(Fact_sales[order_id]))
+		formatString: 0
+		displayFolder: 04 Quality & Reviews
+		lineageTag: 8afb599f-8a27-4fad-a82d-867c7931b04c
 
 	column '.'
 		isHidden

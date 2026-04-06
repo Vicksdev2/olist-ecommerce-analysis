@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "d137994525c989e88bd3",
+  "name": "a8acf4783bbdef8f4363",
   "position": {
-    "x": 0,
-    "y": 205,
-    "z": 1000,
-    "height": 230,
-    "width": 403.75,
-    "tabOrder": 1000
+    "x": 696.25,
+    "y": 171.25,
+    "z": 3000,
+    "height": 256.25,
+    "width": 560,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "areaChart",
@@ -23,11 +23,11 @@
                       "Entity": "Dim_Calendario"
                     }
                   },
-                  "Property": "Month"
+                  "Property": "YearMonth"
                 }
               },
-              "queryRef": "Dim_Calendario.Month",
-              "nativeQueryRef": "Month",
+              "queryRef": "Dim_Calendario.YearMonth",
+              "nativeQueryRef": "YearMonth",
               "active": true
             }
           ]
@@ -42,83 +42,59 @@
                       "Entity": "_Measure"
                     }
                   },
-                  "Property": "Revenue"
+                  "Property": "Total Orders"
                 }
               },
-              "queryRef": "_Measure.Revenue",
-              "nativeQueryRef": "Revenue"
+              "queryRef": "_Measure.Total Orders",
+              "nativeQueryRef": "Total Orders"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measure"
+                    }
+                  },
+                  "Property": "AVG order value"
+                }
+              },
+              "queryRef": "_Measure.AVG order value",
+              "nativeQueryRef": "AVG order value"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Dim_Calendario"
+                  }
+                },
+                "Property": "YearMonth"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
-    },
-    "objects": {
-      "categoryAxis": [
-        {
-          "properties": {
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ]
     },
     "visualContainerObjects": {
       "title": [
         {
           "properties": {
-            "fontFamily": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'wf_standard-font_light, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "15D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "background": [
-        {
-          "properties": {
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#EEEEEE'"
-                    }
-                  }
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "53D"
+                  "Value": "'Sales Trends and Average Ticket'"
                 }
               }
             }
@@ -131,7 +107,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "dca6e20ffc25e0a51e75",
+        "name": "616fedc0fdaec5aef8f4",
         "field": {
           "Measure": {
             "Expression": {
@@ -139,7 +115,7 @@
                 "Entity": "_Measure"
               }
             },
-            "Property": "Revenue"
+            "Property": "Total Orders"
           }
         },
         "type": "Advanced",
@@ -164,12 +140,12 @@
                           "Source": "_"
                         }
                       },
-                      "Property": "Revenue"
+                      "Property": "Total Orders"
                     }
                   },
                   "Right": {
                     "Literal": {
-                      "Value": "150M"
+                      "Value": "1L"
                     }
                   }
                 }

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "799502f80d9d15260714",
+  "name": "e36fd0618acddcd32dbd",
   "position": {
-    "x": 723.75510767403557,
-    "y": 53.077671780896651,
-    "z": 1000,
-    "height": 82.5,
-    "width": 180,
-    "tabOrder": 1000
+    "x": 817.748046875,
+    "y": 77.5,
+    "z": 7000,
+    "height": 81.25,
+    "width": 182.5,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "card",
@@ -23,11 +23,12 @@
                       "Entity": "_Measure"
                     }
                   },
-                  "Property": "AVG delivery days"
+                  "Property": "% Revenue MoM"
                 }
               },
-              "queryRef": "_Measure.AVG delivery days",
-              "nativeQueryRef": "AVG delivery days"
+              "queryRef": "_Measure.% Revenue MoM",
+              "nativeQueryRef": "% Revenue MoM",
+              "format": "0%;-0%;0%"
             }
           ]
         }
@@ -42,7 +43,7 @@
                     "Entity": "_Measure"
                   }
                 },
-                "Property": "AVG delivery days"
+                "Property": "% Revenue MoM"
               }
             },
             "direction": "Descending"
@@ -55,23 +56,17 @@
       "categoryLabels": [
         {
           "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "labels": [
-        {
-          "properties": {
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "30D"
                 }
               }
             }
@@ -93,14 +88,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'AVG DELIVERY DAYS'"
+                  "Value": "'%REVENUE MoM'"
                 }
               }
             },
-            "alignment": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "18D"
                 }
               }
             }

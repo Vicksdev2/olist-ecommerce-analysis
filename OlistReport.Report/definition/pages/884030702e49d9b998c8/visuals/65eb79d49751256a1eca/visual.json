@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "65eb79d49751256a1eca",
   "position": {
-    "x": 962.095747398901,
-    "y": 112.7910178705767,
-    "z": 5,
-    "height": 82.558373905267487,
-    "width": 139.53527983988872,
-    "tabOrder": 5
+    "x": 1035,
+    "y": 52.452671780896651,
+    "z": 2000,
+    "height": 83.75,
+    "width": 175,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "card",
@@ -23,11 +23,11 @@
                       "Entity": "_Measure"
                     }
                   },
-                  "Property": "Total Orders"
+                  "Property": "Freight"
                 }
               },
-              "queryRef": "_Measure.Total Orders",
-              "nativeQueryRef": "Total Orders"
+              "queryRef": "_Measure.Freight",
+              "nativeQueryRef": "Freight"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "_Measure"
                   }
                 },
-                "Property": "Total Orders"
+                "Property": "Freight"
               }
             },
             "direction": "Descending"
@@ -50,6 +50,63 @@
         ],
         "isDefaultSort": true
       }
+    },
+    "objects": {
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "30D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'TOTAL FREIGHT COST'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }

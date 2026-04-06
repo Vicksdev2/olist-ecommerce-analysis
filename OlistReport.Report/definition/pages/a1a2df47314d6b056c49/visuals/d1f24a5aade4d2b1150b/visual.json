@@ -1,0 +1,247 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "d1f24a5aade4d2b1150b",
+  "position": {
+    "x": 0,
+    "y": 105,
+    "z": 1,
+    "height": 588.75,
+    "width": 1280,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_sales"
+                    }
+                  },
+                  "Property": "order_id"
+                }
+              },
+              "queryRef": "Fact_sales.order_id",
+              "nativeQueryRef": "order_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "customer_unique_id"
+                }
+              },
+              "queryRef": "Customers.customer_unique_id",
+              "nativeQueryRef": "customer_unique_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sellers"
+                    }
+                  },
+                  "Property": "seller_id"
+                }
+              },
+              "queryRef": "Sellers.seller_id",
+              "nativeQueryRef": "seller_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "customer_state"
+                }
+              },
+              "queryRef": "Customers.customer_state",
+              "nativeQueryRef": "customer_state"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Products"
+                    }
+                  },
+                  "Property": "product category name"
+                }
+              },
+              "queryRef": "Products.product category name",
+              "nativeQueryRef": "product category name"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact_sales"
+                        }
+                      },
+                      "Property": "price"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Fact_sales.price)",
+              "nativeQueryRef": "Sum of price"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact_sales"
+                        }
+                      },
+                      "Property": "freight_value"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Fact_sales.freight_value)",
+              "nativeQueryRef": "Sum of freight_value"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact_sales"
+                        }
+                      },
+                      "Property": "Days late"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Fact_sales.Days late)",
+              "nativeQueryRef": "Sum of Days late"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Order reviews"
+                    }
+                  },
+                  "Property": "review_score"
+                }
+              },
+              "queryRef": "Order reviews.review_score",
+              "nativeQueryRef": "review_score"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measure"
+                    }
+                  },
+                  "Property": "Customer frequency"
+                }
+              },
+              "queryRef": "_Measure.Customer frequency",
+              "nativeQueryRef": "Customer frequency"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Fact_sales"
+                      }
+                    },
+                    "Property": "Days late"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "126.75000547479674D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_sales.order_id"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "126.75000615350234D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Customers.customer_unique_id"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "133.03480298442008D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sellers.seller_id"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

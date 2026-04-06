@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "52514fc052edae42b323",
   "position": {
-    "x": 746.60701600592472,
-    "y": 378.87520215226033,
-    "z": 19000,
-    "height": 325.63456917007994,
-    "width": 515.07217024621013,
-    "tabOrder": 19000
+    "x": 413.75,
+    "y": 277.5,
+    "z": 5000,
+    "height": 428.75,
+    "width": 478.75,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "tableEx",
@@ -84,10 +84,10 @@
                     "Entity": "_Measure"
                   }
                 },
-                "Property": "Late order rate"
+                "Property": "Revenue"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -99,7 +99,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "197.24148841902155D"
+                  "Value": "158.5381468900964D"
                 }
               }
             }
@@ -317,51 +317,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "b6cca4156ca7ec9ceb61",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Products"
-              }
-            },
-            "Property": "product category name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "4c423cb751fa3fd7c795",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measure"
-              }
-            },
-            "Property": "Revenue"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "8af9f4861c8fc28e2a03",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measure"
-              }
-            },
-            "Property": "Late order rate"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "799502f80d9d15260714",
+  "name": "8e2ef380df1761d33372",
   "position": {
-    "x": 723.75510767403557,
-    "y": 53.077671780896651,
-    "z": 1000,
-    "height": 82.5,
-    "width": 180,
-    "tabOrder": 1000
+    "x": 140.01532302210649,
+    "y": 54.327671780896651,
+    "z": 7000,
+    "height": 80,
+    "width": 146.25,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "card",
@@ -23,11 +23,12 @@
                       "Entity": "_Measure"
                     }
                   },
-                  "Property": "AVG delivery days"
+                  "Property": "Cancel Rate"
                 }
               },
-              "queryRef": "_Measure.AVG delivery days",
-              "nativeQueryRef": "AVG delivery days"
+              "queryRef": "_Measure.Cancel Rate",
+              "nativeQueryRef": "Cancel Rate",
+              "format": "0.00%;-0.00%;0.00%"
             }
           ]
         }
@@ -42,7 +43,7 @@
                     "Entity": "_Measure"
                   }
                 },
-                "Property": "AVG delivery days"
+                "Property": "Cancel Rate"
               }
             },
             "direction": "Descending"
@@ -59,6 +60,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
                 }
               }
             }
@@ -93,7 +101,21 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'AVG DELIVERY DAYS'"
+                  "Value": "'CANCEL RATE'"
+                }
+              }
+            },
+            "heading": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Normal'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
                 }
               }
             },
@@ -101,6 +123,39 @@
               "expr": {
                 "Literal": {
                   "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "verticalSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "customizeSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
