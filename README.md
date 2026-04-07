@@ -1,23 +1,12 @@
-<h1 align="center">📊  Olist E-Commerce Analysis </h1>
-<br>
-
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Vicksdev2/olist-ecommerce-analysis/blob/main/proyect_olist.ipynb)
-
 <br>
 <p align="center">
   <img width="1400" height="294" alt="1_1k72mg1_CZvLptX77zzKTg" src="https://github.com/user-attachments/assets/72f40c72-cd16-4a3c-93b9-2cb16267099d" />
 </p>
 
+<h1 align="center">📊  Olist E-Commerce Analysis </h1>
 <br>
-<p align="center">
-  <img width="800" height="400" alt="{240A4128-74E6-4D66-87D1-356E7D442CA1}" src="https://github.com/user-attachments/assets/7ad459dc-ff0e-4505-ab9d-6526030f4bde" />
-</p>
 
-<br>
-<p align="center">
-  <img width="800" height="400" alt="{7B22EA2A-2ABE-4B69-966E-92E9ED6EF766}" src="https://github.com/user-attachments/assets/d72991eb-aa9e-4a66-b879-1323abc8524d" />
-</p>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Vicksdev2/olist-ecommerce-analysis/blob/main/proyect_olist.ipynb)
 
 ---
 <h2>📑 Index </h2>
@@ -30,10 +19,9 @@
 6.  👩🏻‍💻 [Customer Spending and Value](#customer-spending-and-value)
 7.  📦 [Delivery Performance](#delivery-performance)
 8.  🧾 [Reviews and Sentiment](#reviews-and-sentiment)
-9.  💰[Payment Methods](#payment-methods)
-10. 📈[Customer Retention](#customer-retention)
-11. ⚙️[Key Takeaways](#key-takeaways)
-12. ⌨️[Technologies Used](#technologies-used)
+9. 📈 [Customer Retention](#customer-retention)
+10. ⚙️ [Key Takeaways](#key-takeaways)
+11. ⌨️ [Technologies Used](#technologies-used)
 
 ---
 
@@ -49,6 +37,17 @@ The analysis focuses on identifying patterns that help answer questions such as:
 - Are negative reviews more related to products or logistics?
 
 ---
+### POWER BI report
+<br>
+<p align="center">
+  <img width="800" height="400" alt="{240A4128-74E6-4D66-87D1-356E7D442CA1}" src="https://github.com/user-attachments/assets/7ad459dc-ff0e-4505-ab9d-6526030f4bde" />
+</p>
+
+<br>
+<p align="center">
+  <img width="800" height="400" alt="{7B22EA2A-2ABE-4B69-966E-92E9ED6EF766}" src="https://github.com/user-attachments/assets/d72991eb-aa9e-4a66-b879-1323abc8524d" />
+</p>
+<br>
 
 ## Business Objective
 
@@ -107,7 +106,7 @@ This suggests that Olist’s customer base is strongly oriented toward card-base
     </tr>
     <tr>
       <td colspan="2" style="border: none; padding: 5px;">
-        <img src="https://github.com/user-attachments/assets/163bb341-3abe-4479-b953-05cf76755327" style="width: 100%; border-radius: 5px;">
+        <img src="https://github.com/user-attachments/assets/b1ba28bc-ad57-4710-b3d9-711a5e659300" style="width: 100%; border-radius: 5px;">
       </td>
     </tr>
   </table>
@@ -134,7 +133,11 @@ A very large share of customers purchase only once. Repeat buyers exist, but the
 The business shows a strong upward sales trend over time, with visible seasonality across the months.
 
 <p align="center">
-  <img src="public/monthly_sales.png" width="1000" alt="Monthly Sales Evolution" />
+  <img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/f09a580c-a3c1-45ad-b25e-1dcb8ba7127f" />
+</p>
+
+<p align="center">
+<img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/5cb3e75d-1df2-43fa-b65b-5b016a65c0de" />
 </p>
 
 Revenue grows steadily across the observed period, with some clear seasonal peaks. This suggests that the business is scaling, but also that performance is influenced by calendar effects and shopping cycles.
@@ -143,13 +146,29 @@ Revenue grows steadily across the observed period, with some clear seasonal peak
 
 ## Customer Spending and Value
 
-The total spending per customer shows that most buyers are concentrated in the lower spending ranges, while a smaller group of customers generates higher lifetime value.
-
+  The total spending per customer shows that most buyers are concentrated in the lower spending ranges, while a smaller group of customers generates higher lifetime value.
+  This distribution is important because it shows that customer value is not uniform. A relatively small number of customers contribute disproportionately to revenue, which makes value-based segmentation useful for future retention actions.
 <p align="center">
-  <img src="public/total_spending_per_customer.png" width="1000" alt="Total Spending per Customer" />
+  <img src="https://github.com/user-attachments/assets/faa35c96-5a1f-463c-a38c-36d537a77275" width="600" alt="Total Spending per Customer" />
 </p>
 
-This distribution is important because it shows that customer value is not uniform. A relatively small number of customers contribute disproportionately to revenue, which makes value-based segmentation useful for future retention actions.
+<div align="center">
+  <table style="border: 1px solid #d0d7de; border-radius: 6px; border-collapse: separate; overflow: hidden; width: 320px;">
+    <tr>
+      <td align="center" style="padding: 10px; background-color: #ffffff;">
+        <img src="https://github.com/user-attachments/assets/ef05ee7e-75f3-4b53-8c00-e1d6710aea8b" width="300" style="display: block; margin: 0 auto;">
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; background-color: #f6f8fa; border-top: 1px solid #d0d7de;">
+        <p align="center" style="margin: 0; font-family: sans-serif; font-size: 14px;">
+          <strong>💰 Who are the customers who have purchased the most 
+          in terms of the amount spent?</strong>
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>
 
 ---
 
@@ -158,7 +177,8 @@ This distribution is important because it shows that customer value is not unifo
 Delivery delays are not uniform across Brazil. Some states show significantly higher late-order rates than others.
 
 <p align="center">
-  <img src="public/delivery_delays_by_state.png" width="1000" alt="Late Deliveries by State" />
+ <img width="400" height="200" alt="image" src="https://github.com/user-attachments/assets/df59e91f-2f54-4b2f-a858-17172f53042f" />
+
 </p>
 
 States in the Northeast tend to show higher delay rates, which suggests regional logistics constraints. On average, this kind of pattern points to fulfillment and distribution challenges rather than a single nationwide issue.
@@ -174,6 +194,11 @@ The review analysis shows a clear difference between positive and negative exper
 - Logistics-related mentions: **4,306**
 
 This means that when customers are unhappy, the issue is more often tied to product quality, description mismatch, defects, or expectations than to delivery alone.
+
+<img width="400" height="300" alt="image" src="https://github.com/user-attachments/assets/53e7cf6a-d6e1-4573-b40e-440823dcd1eb" />
+
+Through a distribution analysis (box plot), a direct correlation was identified between logistics speed and user satisfaction. While 5-star ratings show consistent and short delivery times (median < 10 days), 1-star reviews exhibit high dispersion and significant delays (median ~15 days with outliers exceeding 50). A critical finding is that intermediate ratings (2 to 4 stars) share a mean...
+
 
 ### Categories with weaker reviews
 Some product categories appear more frequently in lower-rated feedback, which can help identify where quality control, supplier reliability, or product presentation may need attention.
@@ -192,8 +217,10 @@ Customer repurchase behavior shows a very important pattern: many repeat custome
 
 Half of repeat customers make another purchase within about one month. However, the average is much higher than the median because a smaller number of customers return after very long gaps.
 
+
+
 <p align="center">
-  <img src="public/repurchase_cycle.png" width="1000" alt="Repurchase Cycle" />
+  <img width="400" height="250" alt="image" src="https://github.com/user-attachments/assets/b263ec69-00ca-4c98-b298-7a5a7be6ff03" />
 </p>
 
 This indicates that retention is highly uneven. Some customers buy repeatedly in short cycles, while many others make only one purchase and never return.
@@ -218,25 +245,6 @@ If this were to inform business priorities, the analysis suggests focusing on:
 
 These are not direct recommendations from a consultant perspective, but rather logical implications derived from the data.
 
----
-
-## Technologies Used
-
-- Python
-- Pandas
-- Matplotlib
-- Seaborn
-
----
-
-## Project Artifacts
-
-Charts used in this README:
-- `public/total_spending_per_customer.png`
-- `public/payment_methods.png`
-- `public/delivery_delays_by_state.png`
-- `public/monthly_sales.png`
-- `public/repurchase_cycle.png`
 
 ---
 
