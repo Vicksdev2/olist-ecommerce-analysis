@@ -1,7 +1,6 @@
 <h1 align="center">📊  Olist E-Commerce Analysis </h1>
-
 <br>
-# Olist Ecommerce Analysis
+
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Vicksdev2/olist-ecommerce-analysis/blob/main/proyect_olist.ipynb)
 
@@ -15,59 +14,26 @@
   <img width="800" height="400" alt="{240A4128-74E6-4D66-87D1-356E7D442CA1}" src="https://github.com/user-attachments/assets/7ad459dc-ff0e-4505-ab9d-6526030f4bde" />
 </p>
 
-
-
 <br>
 <p align="center">
   <img width="800" height="400" alt="{7B22EA2A-2ABE-4B69-966E-92E9ED6EF766}" src="https://github.com/user-attachments/assets/d72991eb-aa9e-4a66-b879-1323abc8524d" />
-
 </p>
 
-
-
-
-
-
-
-
+---
 <h2>📑 Index </h2>
 
-1. [🪪 About the Project](#about)
-2. [🛠️ Technical Stack and Methodology](#tech)
-3. [⛓️‍💥 Main question](#question)
-4. [🔍 Key Findings](#findings)
-5. [🚩 Locations](#locations)
-6. [🚐 Deliveries](#deliveries)
-7. [🪠🧻🫧 Most recurring products](#products)
-8. [📈 Sales Forecast](#forecast)
-9. [📈 Life Cycle and Sales](#lifecycle)
-10. [⚙️ Technologies used](#technologies)
-11. [⌨️ Data](#data)
-
-<h1 align="center">📊 Olist E-Commerce Analysis</h1>
-
-<p align="center">
-  Exploratory Data Analysis of the Olist e-commerce dataset using Python, with a focus on sales performance, logistics, customer behavior, retention, and review patterns.
-</p>
-
-<p align="center">
-  <img src="public/cover.png" width="1400" alt="Olist E-Commerce Analysis Banner" />
-</p>
-
-## Table of Contents
-
-1. [About the Project](#about-the-project)
-2. [Business Objective](#business-objective)
-3. [Tools and Methodology](#tools-and-methodology)
-4. [Main Findings](#main-findings)
-5. [Sales Analysis](#sales-analysis)
-6. [Customer Spending and Value](#customer-spending-and-value)
-7. [Delivery Performance](#delivery-performance)
-8. [Reviews and Sentiment](#reviews-and-sentiment)
-9. [Payment Methods](#payment-methods)
-10. [Customer Retention](#customer-retention)
-11. [Key Takeaways](#key-takeaways)
-12. [Technologies Used](#technologies-used)
+1.  🪪 [About the Project](#about-the-project)
+2.  🛠️ [Business Objective](#business-objective)
+3.  ⛓️‍💥 [Tools and Methodology](#tools-and-methodology)
+4.  🔍 [Main Findings](#main-findings)
+5.  💲[Sales Analysis](#sales-analysis)
+6.  👩🏻‍💻 [Customer Spending and Value](#customer-spending-and-value)
+7.  📦 [Delivery Performance](#delivery-performance)
+8.  🧾 [Reviews and Sentiment](#reviews-and-sentiment)
+9.  💰[Payment Methods](#payment-methods)
+10. 📈[Customer Retention](#customer-retention)
+11. ⚙️[Key Takeaways](#key-takeaways)
+12. ⌨️[Technologies Used](#technologies-used)
 
 ---
 
@@ -89,11 +55,11 @@ The analysis focuses on identifying patterns that help answer questions such as:
 The goal of this analysis is to transform raw transactional data into actionable business insights.
 
 Rather than building a predictive model, this project focuses on exploratory analysis to uncover:
-- sales trends,
-- customer value,
-- retention behavior,
-- late delivery patterns,
-- and review drivers.
+- sales trends
+- customer value
+- retention behavior
+- late delivery patterns
+- review drivers
 
 ---
 
@@ -125,6 +91,30 @@ Most customers spend relatively little, while a smaller segment drives much high
 
 ### Credit cards dominate payment behavior
 **Credit card** is by far the most used payment method, followed by **boleto**. Other methods such as voucher and debit card represent a much smaller share of transactions.
+This suggests that Olist’s customer base is strongly oriented toward card-based checkout, while boleto still plays an important role in the Brazilian market.
+
+
+
+<div align="center">
+  <table style="width: 60%; border-collapse: collapse; border: none;">
+    <tr>
+      <td width="50%" style="border: none; padding: 5px;">
+        <img src="https://github.com/user-attachments/assets/b4705d21-d70f-44d7-a5db-2079d425a077" style="width: 100%; border-radius: 5px;">
+      </td>
+      <td width="50%" style="border: none; padding: 5px;">
+        <img src="https://github.com/user-attachments/assets/d0528985-44dd-459c-af96-6364ef06a560" style="width: 100%; border-radius: 5px;">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="border: none; padding: 5px;">
+        <img src="https://github.com/user-attachments/assets/163bb341-3abe-4479-b953-05cf76755327" style="width: 100%; border-radius: 5px;">
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+---
 
 ### Product complaints are more common than logistics complaints
 Negative review analysis shows that complaints related to **products** are more frequent than those related to **delivery or logistics**.
@@ -187,18 +177,6 @@ This means that when customers are unhappy, the issue is more often tied to prod
 
 ### Categories with weaker reviews
 Some product categories appear more frequently in lower-rated feedback, which can help identify where quality control, supplier reliability, or product presentation may need attention.
-
----
-
-## Payment Methods
-
-The most used payment method is credit card, followed by boleto.
-
-<p align="center">
-  <img src="public/payment_methods.png" width="1000" alt="Payment Methods Distribution" />
-</p>
-
-This suggests that Olist’s customer base is strongly oriented toward card-based checkout, while boleto still plays an important role in the Brazilian market.
 
 ---
 
