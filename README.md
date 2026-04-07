@@ -194,10 +194,12 @@ The review analysis shows a clear difference between positive and negative exper
 - Logistics-related mentions: **4,306**
 
 This means that when customers are unhappy, the issue is more often tied to product quality, description mismatch, defects, or expectations than to delivery alone.
-
+<p align="center">
 <img width="400" height="300" alt="image" src="https://github.com/user-attachments/assets/53e7cf6a-d6e1-4573-b40e-440823dcd1eb" />
+</p>
+Aquí tienes una traducción precisa y profesional al inglés, adecuada para un informe de análisis de datos:
 
-Through a distribution analysis (box plot), a direct correlation was identified between logistics speed and user satisfaction. While 5-star ratings show consistent and short delivery times (median < 10 days), 1-star reviews exhibit high dispersion and significant delays (median ~15 days with outliers exceeding 50). A critical finding is that intermediate ratings (2 to 4 stars) share a mean...
+"Through a distribution analysis (Boxplot), a direct correlation was identified between logistical speed and user satisfaction. While 5-star ratings show consistent and reduced delivery times (median < 10 days), 1-star reviews exhibit high dispersion and significant delays (median ~15 days with outliers exceeding 50). A critical finding is that intermediate ratings (2 to 4 stars) share very similar delivery medians; this suggests that, once the 12-day threshold is crossed, customer perception ceases to depend exclusively on speed and begins to be influenced by other factors, such as product quality or description accuracy
 
 
 ### Categories with weaker reviews
